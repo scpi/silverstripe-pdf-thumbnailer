@@ -1,6 +1,6 @@
 <?php
 
-class PdfThumbnailerExtension extends DataObjectDecorator {
+class PdfThumbnailerExtension extends DataExtension {
 
     public static $convert_path = '/usr/bin/convert';
 
@@ -21,7 +21,7 @@ class PdfThumbnailerExtension extends DataObjectDecorator {
         // Create and cache the thumbnail
         $command = self::$convert_path.' '.escapeshellarg($file_filename.'['.((int)$page-1).']').' -quality 90 '.escapeshellarg(Director::baseFolder().'/'.$cache_filename);
         $out = shell_exec($command);
-var_dump( $command );
+        // var_dump( $command );
         if ( ! file_exists(Director::baseFolder().'/'.$cache_filename) ) return false;
         $img = new Image();
         $img->setFilename($cache_filename);
